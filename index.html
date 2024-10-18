@@ -9,6 +9,25 @@
   </head>
   <body>
     <h1>Kiwbary</h1>
+    <dialog>
+      <button class="close">Close</button>
+      <form id="book-form">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" required /><br /><br />
+
+        <label for="author">Autor:</label>
+        <input type="text" id="author" name="author" required /><br /><br />
+
+        <label for="pages">Páginas:</label>
+        <input type="number" id="pages" name="pages" required /><br /><br />
+
+        <label for="read">¿Leído?:</label>
+        <input type="checkbox" id="read" name="read" /><br /><br />
+
+        <button class="add" type="submit">Enviar</button>
+      </form>
+    </dialog>
+    <button class="open" type="submit">New Book</button>
     <div class="books-container"></div>
     <div id="app"></div>
     <script type="module" src="/main.js"></script>

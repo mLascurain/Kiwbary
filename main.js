@@ -12,18 +12,6 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(newBook);
 }
 
-const userNumber = prompt("How many books do you want to load?");
-for (let i = 0; i < userNumber; i++) {
-  const userTitle = prompt("Please enter the title of the book: ");
-  const userAuthor = prompt("Please enter the author of the book: ");
-  const userPages = prompt("Please enter the pages of the book: ");
-  const userState = prompt("Have you read the book? ");
-
-  addBookToLibrary(userTitle, userAuthor, userPages, userState);
-}
-
-console.log(myLibrary);
-
 function displayBooks(myLibrary) {
   for (let i = 0; i < myLibrary.length; i++) {
     const bookDisplay = myLibrary[i];
@@ -50,3 +38,31 @@ function displayBooks(myLibrary) {
 window.onload = function () {
   displayBooks(myLibrary);
 };
+
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector(".open");
+const closeButton = document.querySelector(".close");
+
+// "Show the dialog" button opens the dialog modally
+showButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+// "Close" button closes the dialog
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
+
+const form = document.getElementById("book-form");
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const userTitle = document.getElementById("title").value;
+  const userAuthor = document.getElementById("author").value;
+  const userPages = document.getElementById("pages").value;
+  const userRead = document.getElementById("read").checked;
+
+  addBookToLibrary(userTitle, userAuthor, userPages, userRead);
+  dialog.close();
+  displayBooks(myLibrary);
+});
