@@ -13,15 +13,18 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks(myLibrary) {
+  const container = document.querySelector(".books-container");
+  container.innerHTML = "";
+
   for (let i = 0; i < myLibrary.length; i++) {
     const bookDisplay = myLibrary[i];
-    const container = document.querySelector(".books-container");
     if (!container) {
       console.error(
         "No container element found with the class 'books-container'",
       );
       return;
     }
+
     const book = document.createElement("div");
     book.classList.add("book"); // Add class for styling (if needed)
     book.innerHTML = `
@@ -29,6 +32,7 @@ function displayBooks(myLibrary) {
         <h3>${bookDisplay.author}</h3>
         <p>${bookDisplay.pages}</p>
         <p>${bookDisplay.read}</p>
+        <button type="button" onclick="removeBook(${i})">Remove</button>
     `;
     container.appendChild(book);
   }
@@ -66,3 +70,10 @@ form.addEventListener("submit", function (e) {
   dialog.close();
   displayBooks(myLibrary);
 });
+
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  displayBooks(myLibrary);
+}
+
+window.removeBook = removeBook;
