@@ -32,6 +32,9 @@ function displayBooks(myLibrary) {
         <h3>${bookDisplay.author}</h3>
         <p>${bookDisplay.pages}</p>
         <p>${bookDisplay.read}</p>
+        <button type="button" onclick="changeReadStatus(${i})">
+          ${bookDisplay.read ? "Marcar como no leído" : "Marcar como leído"}
+        </button>
         <button type="button" onclick="removeBook(${i})">Remove</button>
     `;
     container.appendChild(book);
@@ -77,3 +80,14 @@ function removeBook(index) {
 }
 
 window.removeBook = removeBook;
+
+Book.prototype.changeReadStatus = function () {
+  this.read = !this.read;
+};
+
+function changeReadStatus(index) {
+  myLibrary[index].changeReadStatus();
+  displayBooks(myLibrary);
+}
+
+window.changeReadStatus = changeReadStatus;
